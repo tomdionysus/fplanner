@@ -1,6 +1,6 @@
 # FPlanner
 
-FPlanner is a CoffeeScript tool to prioritise and calculate debt payments and calculate a debt-free date.
+FPlanner is a CoffeeScript tool to prioritise and calculate debt payments and work out your debt-free date.
 
 ## Installation
 

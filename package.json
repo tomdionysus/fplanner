@@ -1,0 +1,25 @@
+{
+  "name": "fplanner",
+  "version": "0.0.1",
+  "description": "FPlanner",
+  "engines": {
+    "node": "latest"
+  },
+  "main": "lib/server.coffee",
+  "scripts": {
+    "start": "./node_modules/.bin/coffee main.coffee",
+    "test": "./node_modules/.bin/jasmine-node --coffee spec"
+  },
+  "repository": "git@github.com:tomdionysus/fplanner",
+  "author": "Tom Cully",
+  "license": "WTFPL",
+  "devDependencies": {
+    "jasmine-node": "latest",
+    "coffee-coverage": "latest"
+  },
+  "dependencies": {
+    "coffee-script" : "latest",
+    "underscore": "latest",
+    "decimal.js": "latest"
+  }
+}

@@ -20,6 +20,7 @@
   "dependencies": {
     "coffee-script" : "latest",
     "underscore": "latest",
-    "decimal.js": "latest"
+    "decimal.js": "latest",
+    "dateformat": "latest"
   }
 }

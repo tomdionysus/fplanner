@@ -10,11 +10,10 @@ daydiff = (first, second) ->
     Math.round((second-first)/(1000*60*60*24))
 
 getWeight = (name, loan) ->
-	loan.amount.mul(loan.apr)
-	# loan.apr
+	# Weight is the product of the amount and the apr, squared
+	loan.amount.mul(loan.apr.pow(2))
 
-# Data
-
+# Work out priority weighting
 loanWeighting = [] 
 loanWeighting.push({name:pname, weighting: getWeight(name, x)}) for pname, x of config.loans
 loanWeighting = _.sortBy(loanWeighting, 'weighting').reverse()
@@ -45,9 +44,6 @@ console.log("Total Fixed Expenditure $"+fixedExpenditureTotal.toFixed(2))
 console.log("Total Repayment Available $"+incomeTotal.sub(fixedExpenditureTotal).toFixed(2))
 console.log("- Payment Plan -------")
 
-x = 0
-
-
 while Object.keys(config.loans).length > 0 
 	total = incomeTotal.sub(fixedExpenditureTotal)
 
@@ -71,6 +67,9 @@ while Object.keys(config.loans).length > 0
 		console.log("minimum - #{name} - Left #{total}, minimum: #{loan.minimum}, loan amount #{loan.amount}, min of two #{owedNow}") if config.debug
 		out[name] = owedNow
 		total = total.sub(owedNow)
+
+	if total.lessThan(new Decimal(0))
+		console.log("You cannot afford to pay your set expenditure this pay period. You need to reduce your outgoings, you are short by $#{total.mul(-1).toFixed(2)}")
 
 	# Work out extra in order of weight desc
 	for x in loanWeighting
